@@ -1,0 +1,66 @@
+﻿<Window x:Class="Views.EmployeeDismissalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Views"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Title="Уволить сотрудника" Height="280" Width="300">
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style TargetType="{x:Type DatePicker}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35"/>
+
+        </Grid.RowDefinitions>
+
+        <Label Content="Выберете сотрудника" Grid.Row="0"/>
+        <ComboBox x:Name="Employees" Grid.Row="1" Margin="0 3">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LastName}"></TextBlock>
+                        <TextBlock Text=" "></TextBlock>
+                        <TextBlock Text="{Binding FirstName}"></TextBlock>
+                        <TextBlock Text=" "></TextBlock>
+                        <TextBlock Text="{Binding MiddleName}"></TextBlock>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding StringFormat= (ID {0}), Path=Id}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="Дата увольнения" Grid.Row="3"/>
+        <DatePicker x:Name="dateOfDismissalField" SelectedDateFormat="Short" Grid.Row="4" Margin="0 3"/>
+
+        <Button x:Name="btnEmployeeDismissal" Content="Уволить"  Grid.Row="6" Click="btnEmployeeDismissal_Click"/>
+    </Grid>
+</Window>
